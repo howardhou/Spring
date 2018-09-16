@@ -2,7 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<bean id="personService" class="com.example.service.PersonService">
-    <property name="name" value="hello world"/>
-</bean>
+    <bean id="personService" class="com.example.service.PersonService">
+        <property name="name" value="hello world"/>
+    </bean>
+
+    <bean id="chinese" class="com.example.service.Chinese">
+        <!--设值注入-->
+        <property name="axe" ref="stoneAxe"/>
+    </bean>
+    <bean id="stoneAxe" class="com.example.service.StoneAxe" />
+
 </beans>
