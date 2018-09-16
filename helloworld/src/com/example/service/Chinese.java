@@ -7,6 +7,14 @@ public class Chinese implements Person {
         this.axe = axe;
     }
 
+    public Chinese(){
+
+    }
+
+    public Chinese(Axe axe){
+        this.axe = axe;
+    }
+
     @Override
     public void useAxe() {
         System.out.println(axe.chop());

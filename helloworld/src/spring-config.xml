@@ -8,7 +8,9 @@
 
     <bean id="chinese" class="com.example.service.Chinese">
         <!--设值注入-->
-        <property name="axe" ref="stealAxe"/>
+        <!--<property name="axe" ref="stealAxe"/>-->
+        <!--使用构造注入-->
+        <constructor-arg ref="stoneAxe" />
     </bean>
     <bean id="stoneAxe" class="com.example.service.StoneAxe" />
     <bean id="stealAxe" class="com.example.service.SteelAxe" />
