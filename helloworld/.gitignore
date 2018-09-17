@@ -6,7 +6,9 @@
 *.log
 
 ### IntelliJ IDEA ###
-.idea
+.idea/*
+!.idea/modules.xml
+
 out
 *.iws
 # *.iml
