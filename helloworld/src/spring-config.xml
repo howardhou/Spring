@@ -22,4 +22,7 @@
     </bean>
     <bean id="stoneAxe" class="com.example.service.StoneAxe" />
     <bean id="stealAxe" class="com.example.service.SteelAxe" />
+
+    <!--配置监听器-->
+    <bean class="com.example.listener.EmailNotifier" />
 </beans>

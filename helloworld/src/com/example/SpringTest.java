@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.event.EmailEvent;
 import com.example.service.Person;
 import com.example.service.PersonService;
 import org.springframework.context.ApplicationContext;
@@ -33,5 +34,8 @@ public class SpringTest {
         System.out.println(hello);
         System.out.println(now);
 
+        // 主动触发容器事件
+        EmailEvent emailEvent = new EmailEvent("springTest", "houdd321@hotmail.com", "this is a test");
+        context.publishEvent(emailEvent);
     }
 }
