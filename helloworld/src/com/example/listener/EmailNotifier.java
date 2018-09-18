@@ -15,7 +15,6 @@ public class EmailNotifier implements ApplicationListener {
         }
         else {
             System.out.println("容器本身的事件 ："+applicationEvent);
-            applicationEvent.
         }
     }
 }
