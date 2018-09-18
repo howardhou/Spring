@@ -5,6 +5,9 @@ import com.example.service.PersonService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
+import java.util.Locale;
+
 public class SpringTest {
     public static void main(String[] args){
         // 创建 Spring 容器 ApplicationContext
@@ -21,5 +24,14 @@ public class SpringTest {
         // P537 使用 设值注入
         Person person = context.getBean("chinese", Person.class);
         person.useAxe();
+
+        String[] a = {"Howard"};
+        String hello = context.getMessage("hello", a, Locale.getDefault());
+        Object[] b = {new Date()};
+
+        String now = context.getMessage("now", b, Locale.getDefault());
+        System.out.println(hello);
+        System.out.println(now);
+
     }
 }
