@@ -29,4 +29,11 @@
 
     <!--配置监听器-->
     <bean class="com.example.listener.EmailNotifier" />
+
+    <!--设置普通属性值-->
+    <bean id="achinese" class="com.example.service.Chinese">
+        <constructor-arg name="name" value="houdongdong"/>
+        <constructor-arg name="age" value="32" />
+        <constructor-arg name="height" value="7.3" />
+    </bean>
 </beans>

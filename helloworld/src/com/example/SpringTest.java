@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.event.EmailEvent;
+import com.example.service.Chinese;
 import com.example.service.Person;
 import com.example.service.PersonService;
 import org.springframework.context.ApplicationContext;
@@ -42,5 +43,8 @@ public class SpringTest {
         System.out.println(context.getBean("personService") == context.getBean("personService"));
         // 判断两次请求 Bean 实例是否相等 - prototype 作用域
         System.out.println(context.getBean("personService2") == context.getBean("personService2"));
+
+        Chinese achinese = context.getBean("achinese", Chinese.class);
+        System.out.println("姓名：" + achinese.getName() + " 年龄：" + achinese.getAge() + " 身高：" + achinese.getHeight());
     }
 }
