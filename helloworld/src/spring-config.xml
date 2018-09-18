@@ -13,6 +13,10 @@
     <bean id="personService" class="com.example.service.PersonService">
         <property name="name" value="hello world"/>
     </bean>
+    <!--配置一个 prototype Bean-->
+    <bean id="personService2" class="com.example.service.PersonService" scope="prototype">
+        <property name="name" value="hello world"/>
+    </bean>
 
     <bean id="chinese" class="com.example.service.Chinese">
         <!--设值注入-->

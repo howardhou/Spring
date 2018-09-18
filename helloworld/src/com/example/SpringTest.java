@@ -37,5 +37,10 @@ public class SpringTest {
         // 主动触发容器事件
         EmailEvent emailEvent = new EmailEvent("springTest", "houdd321@hotmail.com", "this is a test");
         context.publishEvent(emailEvent);
+
+        // 判断两次请求 Bean 实例是否相等 - singleton 作用域
+        System.out.println(context.getBean("personService") == context.getBean("personService"));
+        // 判断两次请求 Bean 实例是否相等 - prototype 作用域
+        System.out.println(context.getBean("personService2") == context.getBean("personService2"));
     }
 }
