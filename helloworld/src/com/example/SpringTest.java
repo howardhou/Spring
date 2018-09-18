@@ -49,5 +49,9 @@ public class SpringTest {
 
         // 注入集合值
         context.getBean("chinese2", Chinese.class).testCollection();
+
+        // 复合属性
+        Chinese chinese3 = context.getBean("chinese3", Chinese.class);
+        System.out.println(chinese3.getAxe().getName());
     }
 }

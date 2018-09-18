@@ -36,7 +36,7 @@
         <constructor-arg name="age" value="32" />
         <constructor-arg name="height" value="7.3" />
     </bean>
-
+    <!--注入集合值-->
     <bean id="chinese2" class="com.example.service.Chinese">
         <!--配置List属性-->
         <property name="schools">
@@ -82,5 +82,10 @@
                 <value>算法指引</value>
             </list>
         </property>
+    </bean>
+    <!--复合属性-->
+    <bean id="chinese3" class="com.example.service.Chinese">
+        <property name="axe" ref="stealAxe" />
+        <property name="axe.name" value="鬼斧神工" />
     </bean>
 </beans>
