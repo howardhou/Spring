@@ -46,5 +46,8 @@ public class SpringTest {
 
         Chinese achinese = context.getBean("achinese", Chinese.class);
         System.out.println("姓名：" + achinese.getName() + " 年龄：" + achinese.getAge() + " 身高：" + achinese.getHeight());
+
+        // 注入集合值
+        context.getBean("chinese2", Chinese.class).testCollection();
     }
 }

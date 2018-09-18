@@ -32,8 +32,55 @@
 
     <!--设置普通属性值-->
     <bean id="achinese" class="com.example.service.Chinese">
-        <constructor-arg name="name" value="houdongdong"/>
+        <constructor-arg name="name" value="houdongdong" />
         <constructor-arg name="age" value="32" />
         <constructor-arg name="height" value="7.3" />
+    </bean>
+
+    <bean id="chinese2" class="com.example.service.Chinese">
+        <!--配置List属性-->
+        <property name="schools">
+            <list>
+                <value>小学</value>
+                <value>中学</value>
+                <value>大学</value>
+            </list>
+        </property>
+        <!--配置 Map 属性-->
+        <property name="scores">
+            <map>
+                <entry key="语文" value="87"/>
+                <entry key="英语" value="89"/>
+                <entry key="数学" value="97"/>
+            </map>
+        </property>
+        <!--配置 Map 属性-->
+        <property name="phaseAxes">
+            <map>
+                <entry key="原始社会" value-ref="stoneAxe"/>
+                <entry key="农业社会" value-ref="stealAxe"/>
+            </map>
+        </property>
+        <!--配置 Properties 属性-->
+        <property name="health">
+            <props>
+                <prop key="血压">正常</prop>
+                <prop key="身高">178</prop>
+            </props>
+        </property>
+        <!--配置 set 属性-->
+        <property name="axes">
+            <set>
+                <value>普通的字符串</value>
+                <bean class="com.example.service.SteelAxe"/>
+            </set>
+        </property>
+        <property name="books">
+            <list>
+                <value>明朝那些事</value>
+                <value>三体</value>
+                <value>算法指引</value>
+            </list>
+        </property>
     </bean>
 </beans>
