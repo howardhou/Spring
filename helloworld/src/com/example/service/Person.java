@@ -8,4 +8,7 @@ public interface Person {
     public String getName() ;
 
     public void useAxe();
+
+    public String sayHello(String name);
+    public String sayGoodBye(String name);
 }

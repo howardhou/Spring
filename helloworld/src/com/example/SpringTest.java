@@ -59,12 +59,16 @@ public class SpringTest {
         Chinese chinese4 = context.getBean("chinese4", Chinese.class);
         System.out.println("姓名： " + chinese4.getName() + " 斧头： " +chinese4.getAxe());
 
-        // 使用 静态工厂创建Bean, Spring容器不直接管理Bean，而是管理静态工厂
+        // 使用静态工厂创建Bean, Bean 由静态工厂负责创建，静态工厂(BeingFactory)由Spring容器负责管理
         Being b1 = context.getBean("dog", Being.class);
         b1.testBeing();
         Being b2 = context.getBean("cat", Being.class);
         b2.testBeing();
 
-
+        // 使用实例工厂创建Bean, Bean 由实例工厂负责创建，实例工厂(PersonFactory)由Spring容器负责创建和管理
+        Person p1 = context.getBean("chinese5", Person.class);
+        System.out.println(p1.sayHello("张三") + " " + p1.sayGoodBye("张三"));
+        Person p2 = context.getBean("american", Person.class);
+        System.out.println(p2.sayHello("Jackee") + " " + p2.sayGoodBye("Jackee"));
     }
 }

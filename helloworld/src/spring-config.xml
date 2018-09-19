@@ -94,7 +94,7 @@
     <context:annotation-config />
     <bean class="com.example.SpringConfig" />
 
-    <!--使用Spring管理静态工厂BeingFactory-->
+    <!-- 使用静态工厂创建Bean , Bean 由静态工厂负责创建，静态工厂(BeingFactory)由Spring容器负责管理 -->
     <bean id="dog" class="com.example.factory.BeingFactory" factory-method="getBeing">
         <!--配置静态工厂方法的参数-->
         <constructor-arg value="dog" />
@@ -104,5 +104,14 @@
     <bean id="cat" class="com.example.factory.BeingFactory" factory-method="getBeing">
         <constructor-arg value="cat" />
         <property name="msg" value="我是猫" />
+    </bean>
+
+    <!-- 使用实例工厂创建Bean, Bean 由实例工厂负责创建，实例工厂(PersonFactory)由Spring容器负责创建和管理-->
+    <bean id="personFactory" class="com.example.factory.PersonFactory" />
+    <bean id="chinese5" factory-bean="personFactory" factory-method="getPerson">
+        <constructor-arg value="chinese" />
+    </bean>
+    <bean id="american" factory-bean="personFactory" factory-method="getPerson">
+        <constructor-arg value="american" />
     </bean>
 </beans>

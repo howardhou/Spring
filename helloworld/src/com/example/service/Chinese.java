@@ -116,6 +116,16 @@ public class Chinese implements Person {
         System.out.println(axe.chop());
     }
 
+    @Override
+    public String sayHello(String name) {
+        return name + ", 你好。";
+    }
+
+    @Override
+    public String sayGoodBye(String name) {
+        return name + ", 下次再见。";
+    }
+
     public void testCollection(){
         System.out.println(schools);
         System.out.println(scores);
@@ -123,6 +133,5 @@ public class Chinese implements Person {
         System.out.println(health);
         System.out.println(axes);
         System.out.println(Arrays.toString(books));
-
     }
 }
