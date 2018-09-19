@@ -93,4 +93,16 @@
     <!--以XML配置为主时，需要让XML配置能加载Java 的配置类-->
     <context:annotation-config />
     <bean class="com.example.SpringConfig" />
+
+    <!--使用Spring管理静态工厂BeingFactory-->
+    <bean id="dog" class="com.example.factory.BeingFactory" factory-method="getBeing">
+        <!--配置静态工厂方法的参数-->
+        <constructor-arg value="dog" />
+        <!--注入dog的属性值-->
+        <property name="msg" value="我是狗" />
+    </bean>
+    <bean id="cat" class="com.example.factory.BeingFactory" factory-method="getBeing">
+        <constructor-arg value="cat" />
+        <property name="msg" value="我是猫" />
+    </bean>
 </beans>

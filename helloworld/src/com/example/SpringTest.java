@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.event.EmailEvent;
+import com.example.service.Being;
 import com.example.service.Chinese;
 import com.example.service.Person;
 import com.example.service.PersonService;
@@ -54,7 +55,16 @@ public class SpringTest {
         Chinese chinese3 = context.getBean("chinese3", Chinese.class);
         System.out.println(chinese3.getAxe().getName());
 
+        // 使用 Java 类进行配置管理
         Chinese chinese4 = context.getBean("chinese4", Chinese.class);
         System.out.println("姓名： " + chinese4.getName() + " 斧头： " +chinese4.getAxe());
+
+        // 使用 静态工厂创建Bean, Spring容器不直接管理Bean，而是管理静态工厂
+        Being b1 = context.getBean("dog", Being.class);
+        b1.testBeing();
+        Being b2 = context.getBean("cat", Being.class);
+        b2.testBeing();
+
+
     }
 }
