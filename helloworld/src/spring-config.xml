@@ -19,11 +19,12 @@
         <property name="name" value="hello world"/>
     </bean>
 
-    <bean id="chinese" class="com.example.service.Chinese">
+    <!--通过parent属性定义 Bean-->
+    <bean id="chinese" parent="chineseTemplate">
         <!--设值注入-->
-        <!--<property name="axe" ref="stealAxe"/>-->
+        <property name="axe" ref="stoneAxe"/>
         <!--使用构造注入-->
-        <constructor-arg ref="stoneAxe" />
+        <!--<constructor-arg ref="stoneAxe" />-->
     </bean>
     <bean id="stoneAxe" class="com.example.service.StoneAxe" />
     <bean id="stealAxe" class="com.example.service.SteelAxe" />
@@ -32,13 +33,13 @@
     <bean class="com.example.listener.EmailNotifier" />
 
     <!--设置普通属性值-->
-    <bean id="achinese" class="com.example.service.Chinese">
+    <bean id="achinese" parent="chineseTemplate">
         <constructor-arg name="name" value="houdongdong" />
         <constructor-arg name="age" value="32" />
         <constructor-arg name="height" value="7.3" />
     </bean>
     <!--注入集合值-->
-    <bean id="chinese2" class="com.example.service.Chinese">
+    <bean id="chinese2" parent="chineseTemplate">
         <!--配置List属性-->
         <property name="schools">
             <list>
@@ -85,8 +86,7 @@
         </property>
     </bean>
     <!--复合属性-->
-    <bean id="chinese3" class="com.example.service.Chinese">
-        <property name="axe" ref="stealAxe" />
+    <bean id="chinese3" parent="chineseTemplate">
         <property name="axe.name" value="鬼斧神工" />
     </bean>
 
@@ -113,5 +113,11 @@
     </bean>
     <bean id="american" factory-bean="personFactory" factory-method="getPerson">
         <constructor-arg value="american" />
+    </bean>
+
+    <!--使用 abstract 定义抽象Bean-->
+    <bean id="chineseTemplate" class="com.example.service.Chinese" abstract="true">
+        <property name="axe" ref="stealAxe" />
+        <property name="name" value="someone" />
     </bean>
 </beans>
