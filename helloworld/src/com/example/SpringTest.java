@@ -1,10 +1,7 @@
 package com.example;
 
 import com.example.event.EmailEvent;
-import com.example.service.Being;
-import com.example.service.Chinese;
-import com.example.service.Person;
-import com.example.service.PersonService;
+import com.example.service.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -78,5 +75,9 @@ public class SpringTest {
         System.out.println(p3 == p4);
         // 要获取 FactoryBean 本身时， 需在 FactoryBean ID 前面加 &
         System.out.println(context.getBean("&chinese6"));
+
+        // 获取Bean本身的ID： 需要Bean实现BeanNameAware中的setBeanName方法，该方法有Spring容器调用
+        English english = context.getBean("english", English.class);
+        english.info();
     }
 }

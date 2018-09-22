@@ -124,4 +124,5 @@
     <!-- 使用工厂Bean： FactoryBean-->
     <bean id="chinese6" class="com.example.factory.ChineseFactoryBean" />
 
+    <bean id="english" class="com.example.service.English" />
 </beans>
