@@ -120,4 +120,8 @@
         <property name="axe" ref="stealAxe" />
         <property name="name" value="someone" />
     </bean>
+
+    <!-- 使用工厂Bean： FactoryBean-->
+    <bean id="chinese6" class="com.example.factory.ChineseFactoryBean" />
+
 </beans>

@@ -70,5 +70,13 @@ public class SpringTest {
         System.out.println(p1.sayHello("张三") + " " + p1.sayGoodBye("张三"));
         Person p2 = context.getBean("american", Person.class);
         System.out.println(p2.sayHello("Jackee") + " " + p2.sayGoodBye("Jackee"));
+
+        // 使用工作Bean：Spring 容器通过getBean方法获取工厂Bean时，容器不会返回FactoryBean实例，而是返回该 FactoryBean 的产品
+        Person p3 = context.getBean("chinese6", Person.class);
+        System.out.println(p3.sayHello("Marry") + " " + p3.sayGoodBye("Marry"));
+        Person p4 = context.getBean("chinese6", Person.class);
+        System.out.println(p3 == p4);
+        // 要获取 FactoryBean 本身时， 需在 FactoryBean ID 前面加 &
+        System.out.println(context.getBean("&chinese6"));
     }
 }
