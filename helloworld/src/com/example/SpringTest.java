@@ -79,5 +79,12 @@ public class SpringTest {
         // 获取Bean本身的ID： 需要Bean实现BeanNameAware中的setBeanName方法，该方法有Spring容器调用
         English english = context.getBean("english", English.class);
         english.info();
+
+        // 让Bean能够访问Spring容器: 通过实现 ApplicationContextAware 接口中的 setApplicationContext() 方法, 该方法由Spring容器调用
+        Japanese japanese = context.getBean("japanese", Japanese.class);
+        System.out.println(japanese.getFactory());
+        System.out.println(japanese.getContext());
+        System.out.println(context == japanese.getContext());
+
     }
 }

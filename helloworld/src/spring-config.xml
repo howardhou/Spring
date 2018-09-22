@@ -128,4 +128,7 @@
 
     <!--使用depends-on强制初始化 english2 之前初始化 cat-->
     <bean id="english2" class="com.example.service.English" depends-on="cat"/>
+
+    <!--让Bean能够访问Spring容器-->
+    <bean id="japanese" class="com.example.service.Japanese" />
 </beans>
