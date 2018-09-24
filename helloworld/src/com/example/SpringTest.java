@@ -13,7 +13,7 @@ public class SpringTest {
         // 创建 Spring 容器 ApplicationContext
         // ApplicationContext 是Spring的核心， Spring中绝大部分功能是通过该容器实现的
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        System.out.println(context);
+        System.out.println("实例化ApplicationContext： " + context);
 
         // Spring容器（ApplicationContext） 可以根据配置文件信息（spring-config.xml），创建PersonService的实例，并为实例设置属性值
         // 这种由容器对象为对象设置属性值的方式称为控制反转
@@ -74,7 +74,7 @@ public class SpringTest {
         Person p4 = context.getBean("chinese6", Person.class);
         System.out.println(p3 == p4);
         // 要获取 FactoryBean 本身时， 需在 FactoryBean ID 前面加 &
-        System.out.println(context.getBean("&chinese6"));
+        System.out.println("FactoryBean 本身: "+ context.getBean("&chinese6"));
 
         // 获取Bean本身的ID： 需要Bean实现BeanNameAware中的setBeanName方法，该方法有Spring容器调用
         English english = context.getBean("english", English.class);
@@ -82,9 +82,9 @@ public class SpringTest {
 
         // 让Bean能够访问Spring容器: 通过实现 ApplicationContextAware 接口中的 setApplicationContext() 方法, 该方法由Spring容器调用
         Japanese japanese = context.getBean("japanese", Japanese.class);
-        System.out.println(japanese.getFactory());
-        System.out.println(japanese.getContext());
-        System.out.println(context == japanese.getContext());
+        System.out.println("japanese.getFactory() ："+ japanese.getFactory());
+        System.out.println("japanese.getContext() ："+ japanese.getContext());
+        System.out.println("context == japanese.getContext() : " + (context == japanese.getContext()));
 
     }
 }

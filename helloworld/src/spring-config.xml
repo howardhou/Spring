@@ -131,4 +131,9 @@
 
     <!--让Bean能够访问Spring容器-->
     <bean id="japanese" class="com.example.service.Japanese" />
+
+    <!--配置Bean 的 init-method 方法，所有属性设置完成后，会自动执行 init 方法-->
+    <bean id="korean" class="com.example.service.Korean" init-method="init">
+        <property name="axe" ref="stoneAxe" />
+    </bean>
 </beans>
