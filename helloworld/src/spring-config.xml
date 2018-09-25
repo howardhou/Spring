@@ -132,8 +132,13 @@
     <!--让Bean能够访问Spring容器-->
     <bean id="japanese" class="com.example.service.Japanese" />
 
-    <!--配置Bean 的 init-method 方法，所有属性设置完成后，会自动执行 init 方法-->
+    <!--配置Bean 的 init-method 方法，初始化完成之前，先调用 afterPropertiesSet 方法，再调用init方法-->
     <bean id="korean" class="com.example.service.Korean" init-method="init">
         <property name="axe" ref="stoneAxe" />
+    </bean>
+
+    <!--配置Bean的 destroy-method 方法，销毁完成之前，先调用 destroy 方法，再调用 close 方法-->
+    <bean id="french" class="com.example.service.French" destroy-method="close">
+        <property name="axe" ref="stealAxe"/>
     </bean>
 </beans>

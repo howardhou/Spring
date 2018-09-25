@@ -1,8 +1,8 @@
 package com.example.service;
 
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.DisposableBean;
 
-public class Korean implements Person, InitializingBean {
+public class French implements Person, DisposableBean {
     private Axe axe;
     private String name;
     @Override
@@ -18,7 +18,6 @@ public class Korean implements Person, InitializingBean {
 
     @Override
     public void setName(String name) {
-        System.out.println("正在调用 setName");
         this.name = name;
     }
 
@@ -42,18 +41,17 @@ public class Korean implements Person, InitializingBean {
         return "下次见，"+ name;
     }
 
-    // 所有属性设置完成后，会自动执行 afterPropertiesSet 方法
-//    初始化完成之前，下调用 afterPropertiesSet 方法，再调用init方法
+    // 销毁完成之前，先调用 destroy 方法，再调用 close 方法
     @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("正在执行 InitializingBean 接口中的 afterPropertiesSet 方法");
+    public void destroy() throws Exception {
+        System.out.println("正在执行 DisposableBean 接口中的 destroy 方法");
     }
 
-    public Korean(){
-        System.out.println("Spring 容器实例化 Korean");
+    public void close(){
+        System.out.println("正在执行 close 方法");
     }
 
-    public void init(){
-        System.out.println("正在执行初始化方法 init");
+    public French(){
+        System.out.println("Spring 容器实例化 French");
     }
 }

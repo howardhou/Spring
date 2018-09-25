@@ -86,5 +86,9 @@ public class SpringTest {
         System.out.println("japanese.getContext() ："+ japanese.getContext());
         System.out.println("context == japanese.getContext() : " + (context == japanese.getContext()));
 
+        Person person2 = context.getBean("french", Person.class);
+        person2.useAxe();
+        // 为Spring容器注册一个关闭的钩子，保证关闭Spring容器之前调用实例的析构函数
+        ((ClassPathXmlApplicationContext) context).registerShutdownHook();
     }
 }
