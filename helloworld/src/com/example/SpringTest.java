@@ -86,9 +86,17 @@ public class SpringTest {
         System.out.println("japanese.getContext() ："+ japanese.getContext());
         System.out.println("context == japanese.getContext() : " + (context == japanese.getContext()));
 
+        // 实现 Bean 销毁之前的行为
         Person person2 = context.getBean("french", Person.class);
         person2.useAxe();
         // 为Spring容器注册一个关闭的钩子，保证关闭Spring容器之前调用实例的析构函数
         ((ClassPathXmlApplicationContext) context).registerShutdownHook();
+
+        // 协调作用域不同步的Bean，
+        German german = context.getBean("german", German.class);
+        // 每次调用 getAxe 方法，都会产生不同的 Axe 实例
+        System.out.println("获取Axe实例： " + german.getAxe());
+        System.out.println("获取Axe实例： " + german.getAxe());
+
     }
 }

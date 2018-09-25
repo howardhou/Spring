@@ -141,4 +141,12 @@
     <bean id="french" class="com.example.service.French" destroy-method="close">
         <property name="axe" ref="stealAxe"/>
     </bean>
+
+    <!--协调作用域不同步的Bean-->
+    <!--使用 prototype 作用域-->
+    <bean id="woodAxe" class="com.example.service.WoodAxe" scope="prototype" />
+    <bean id="german" class="com.example.service.German">
+        <!--指定 getAxe 方法的返回值，调用 getAxe 方法返回woodAxe-->
+        <lookup-method name="getAxe" bean="woodAxe"/>
+    </bean>
 </beans>
