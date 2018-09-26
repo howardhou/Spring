@@ -149,4 +149,37 @@
         <!--指定 getAxe 方法的返回值，调用 getAxe 方法返回woodAxe-->
         <lookup-method name="getAxe" bean="woodAxe"/>
     </bean>
+
+    <!--注入其他Bean的属性值：定义目标Bean-->
+    <bean id="canada" class="com.example.service.Canada">
+        <property name="age" value="30"/>
+        <property name="pet">
+            <bean class="com.example.service.Pet">
+                <property name="age" value="3"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--注入其他Bean的属性值：获得目标Bean的属性值，再将获得的值被注入给pet1 的 age属性-->
+    <bean id="pet1" class="com.example.service.Pet">
+        <property name="age">
+            <bean id="canada.pet.age" class="org.springframework.beans.factory.config.PropertyPathFactoryBean"/>
+        </property>
+    </bean>
+
+    <!--将目标Bean的属性值定义成 Bean实例-->
+    <bean id="pet2" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+        <!--确定目标Bean，表明pet2 来自哪个Bean-->
+        <property name="targetBeanName" value="canada"/>
+        <!--确定属性表达式，表明pet2 来自目标Bean的哪个属性-->
+        <property name="propertyPath" value="pet"/>
+    </bean>
+
+    <!--将目标Bean的属性值定义成 Bean实例-->
+    <bean id="theAge" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+        <!--确定目标Bean，表明 theAge 来自哪个Bean-->
+        <property name="targetBeanName" value="canada"/>
+        <!--确定属性表达式，表明 theAge 来自目标Bean的哪个属性, 此处使用复合属性-->
+        <property name="propertyPath" value="pet.age"/>
+    </bean>
 </beans>

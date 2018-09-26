@@ -98,5 +98,13 @@ public class SpringTest {
         System.out.println("获取Axe实例： " + german.getAxe());
         System.out.println("获取Axe实例： " + german.getAxe());
 
+        // 注入其他Bean的属性值
+        System.out.println("pet1: "+ context.getBean("pet1"));
+
+        // 将目标Bean的属性值定义成 Bean实例
+        System.out.println("pet2: "+ context.getBean("pet2"));
+        System.out.println("canada.pet: "+ context.getBean("canada", Canada.class).getPet());
+
+        System.out.println("theAge: "+ context.getBean("theAge"));
     }
 }
