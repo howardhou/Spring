@@ -106,5 +106,13 @@ public class SpringTest {
         System.out.println("canada.pet: "+ context.getBean("canada", Canada.class).getPet());
 
         System.out.println("theAge: "+ context.getBean("theAge"));
+
+        // 注入其他Bean中的方法的返回值: 指定调用目标Bean的哪个方法
+        System.out.println("pet3: "+ context.getBean("pet3", Pet.class).getAge());
+        // 注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法
+        System.out.println("pet4: "+ context.getBean("pet4", Pet.class).getAge());
+        // 注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法和参数
+        System.out.println("java version: "+ context.getBean("javaVersion"));
+
     }
 }

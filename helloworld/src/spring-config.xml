@@ -182,4 +182,37 @@
         <!--确定属性表达式，表明 theAge 来自目标Bean的哪个属性, 此处使用复合属性-->
         <property name="propertyPath" value="pet.age"/>
     </bean>
+
+    <!--注入其他Bean中的方法的返回值： 定义目标Bean-->
+    <bean id="ageGenerator" class="com.example.util.ValueGenerator"/>
+    <!--注入其他Bean中的方法的返回值： 指定调用目标Bean的哪个方法-->
+    <bean id="pet3" class="com.example.service.Pet">
+        <property name="age">
+            <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <!--确定目标Bean，表明 pet3 调用哪个Bean-->
+                <property name="targetObject" ref="ageGenerator"/>
+                <!--确定目标方法，表明 pet3 调用 Bean 的哪个方法-->
+                <property name="targetMethod" value="getAge"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法-->
+    <bean id="pet4" class="com.example.service.Pet">
+        <property name="age">
+            <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+                <!--确定目标类，表明 pet4 调用哪个类-->
+                <property name="targetClass" value="com.example.util.ValueGenerator"/>
+                <!--确定目标方法，表明 pet4 调用 类的哪个方法-->
+                <property name="targetMethod" value="getStaticAge"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法和参数-->
+    <bean id="javaVersion" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="com.example.util.ValueGenerator"/>
+        <property name="targetMethod" value="getProperty"/>
+        <property name="arguments" value="java.version"/>
+    </bean>
 </beans>
