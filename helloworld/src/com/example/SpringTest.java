@@ -114,5 +114,7 @@ public class SpringTest {
         // 注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法（方法带参数）
         System.out.println("java version: "+ context.getBean("javaVersion"));
 
+        // 使用 p 名称空间配置属性
+        System.out.println("korean2: " + context.getBean("korean2", Korean.class).getName());
     }
 }
