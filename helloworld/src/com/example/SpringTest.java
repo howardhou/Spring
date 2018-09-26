@@ -2,10 +2,18 @@ package com.example;
 
 import com.example.event.EmailEvent;
 import com.example.service.*;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class SpringTest {
@@ -116,5 +124,56 @@ public class SpringTest {
 
         // 使用 p 名称空间配置属性
         System.out.println("korean2: " + context.getBean("korean2", Korean.class).getName());
+
+        spelTest();
+    }
+
+    public static void spelTest(){
+        // ExpressionParser 用于解析表达式
+        ExpressionParser parser = new SpelExpressionParser();
+
+        // 最简单的字符串表达式
+        Expression expression = parser.parseExpression("'HelloWorld'");
+        System.out.println("'HelloWorld'的结果： "+ expression.getValue());
+
+        // 调用方法的表达式
+        expression = parser.parseExpression("'HelloWorld'.concat('!')");
+        System.out.println("'HelloWorld'.concat('!')的结果： "+ expression.getValue() + " vs. " + "HelloWorld".concat("!"));
+
+        // 调用对象的getter 方法
+        expression = parser.parseExpression("'HelloWorld'.bytes");
+        System.out.println("'HelloWorld'.bytes的结果： "+ expression.getValue() + " vs. " + "HelloWorld".getBytes());
+
+        // 访问对象的属性
+        expression = parser.parseExpression("'HelloWorld'.bytes.length");
+        System.out.println("'HelloWorld'.bytes.length的结果： "+ expression.getValue() + " vs. " + "HelloWorld".getBytes().length);
+
+        // 使用构造函数创建对象
+        expression = parser.parseExpression("new String('HelloWorld')" + ".toUpperCase()");
+        System.out.println("new String('HelloWorld')" +".toUpperCase() 的结果： "+ expression.getValue() + " vs. "
+                + new String("HelloWorld").toUpperCase());
+
+        // 以指定的对象作为root来计算表达式的值， 相当于调用 chinese.name表达式
+        Chinese chinese = new Chinese();
+        chinese.setName("齐天大圣");
+        expression = parser.parseExpression("name");
+        System.out.println("以 chinese 为root， name表达式的值是： "+ expression.getValue(chinese, String.class));
+
+        // 以指定的context来计算表达式的值, EvaluationContext 只能有1个root 对象
+        expression = parser.parseExpression("name=='孙大圣'");
+        StandardEvaluationContext context = new StandardEvaluationContext();
+        // 设置根对象, 访问 EvaluationContext 根对象时，可以省略root对象
+        context.setRootObject(chinese);
+        System.out.println("以指定的 context， name=='孙大圣' 表达式的值是： "+ expression.getValue(context, Boolean.class));
+
+        // 修改表达式的值
+        List<Boolean> list = new ArrayList<Boolean>();
+        list.add(true);
+        // 往 context 里放入对象， 访问 EvaluationContext 中指定对象时，要用OGNL格式：#list
+        EvaluationContext context2 = new StandardEvaluationContext();
+        context2.setVariable("list", list);
+        expression = parser.parseExpression("#list[0]");
+        expression.setValue(context2, "false");
+        System.out.println("list的第一个元素：" + list.get(0));
     }
 }
