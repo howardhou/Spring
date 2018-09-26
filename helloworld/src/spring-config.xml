@@ -218,4 +218,8 @@
 
     <!--使用 p 名称空间配置属性-->
     <bean id="korean2" class="com.example.service.Korean" p:axe-ref="stoneAxe" p:name="朴再银"/>
+
+    <!--在Spring 配置文件中 使用表达式语言配置Bean-->
+    <bean id="korean3" class="com.example.service.Korean" p:axe="#{new com.example.service.SteelAxe()}"
+          p:name="#{T(java.lang.Math).random()}" />
 </beans>

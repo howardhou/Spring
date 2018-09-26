@@ -126,6 +126,9 @@ public class SpringTest {
         System.out.println("korean2: " + context.getBean("korean2", Korean.class).getName());
 
         spelTest();
+
+        // 在Spring 配置文件中 使用表达式语言配置Bean
+        System.out.println("korean3: " + context.getBean("korean3", Korean.class).getName());
     }
 
     public static void spelTest(){
