@@ -209,7 +209,7 @@
         </property>
     </bean>
 
-    <!--注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法和参数-->
+    <!--注入其他Bean中的方法的返回值： 指定调用目标类的哪个静态方法（方法带参数）-->
     <bean id="javaVersion" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetClass" value="com.example.util.ValueGenerator"/>
         <property name="targetMethod" value="getProperty"/>
