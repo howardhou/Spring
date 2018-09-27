@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.event.EmailEvent;
 import com.example.service.*;
+import com.example.util.DataSource;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -129,6 +130,9 @@ public class SpringTest {
         System.out.println("korean3: " + context.getBean("korean3", Korean.class).getName());
 
         spelTest2();
+
+        // 使用属性占位符配置器（一个容器后处理器）：PropertyPlaceholderConfigurer，它会读取属性文件信息，
+        System.out.println("dataSource: " + context.getBean("dataSource", DataSource.class).getDriver());
     }
 
     public static void spelTest(){

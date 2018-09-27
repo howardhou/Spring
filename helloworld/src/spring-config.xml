@@ -228,4 +228,19 @@
 
     <!--配置Spring容器后处理器-->
     <bean class="com.example.util.MyBeanFactoryPostProcessor" />
+
+    <!--PropertyPlaceholderConfigurer是一个容器后处理器，它会读取属性文件信息，并将这些信息设置成Spring配置文件的元数据-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>dbconn.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="dataSource" class="com.example.util.DataSource">
+        <property name="driver" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
 </beans>
