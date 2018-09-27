@@ -8,13 +8,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class SpringTest {
     public static void main(String[] args){
@@ -129,6 +127,8 @@ public class SpringTest {
 
         // 在Spring 配置文件中 使用表达式语言配置Bean
         System.out.println("korean3: " + context.getBean("korean3", Korean.class).getName());
+
+        spelTest2();
     }
 
     public static void spelTest(){
@@ -178,5 +178,71 @@ public class SpringTest {
         expression = parser.parseExpression("#list[0]");
         expression.setValue(context2, "false");
         System.out.println("list的第一个元素：" + list.get(0));
+    }
+
+    public static void spelTest2(){
+        ExpressionParser parser = new SpelExpressionParser();
+
+        // 1. 直接量表达式：就是使用Java语言支持的直接量，如：字符串、日期、数值等
+        double num = parser.parseExpression("0.23").getValue(Double.class);
+        System.out.println(num);
+
+        // 2. 在表达式中创建数组
+        Expression expression = parser.parseExpression("new String[]{'Java','Spring'}");
+        System.out.println(expression.getValue());
+
+        // 3. 在表达式中创建List集合
+        expression = parser.parseExpression("{'Java', 'Spring Framework'}");
+        System.out.println(expression.getValue());
+
+        // 4. 在表达式中 访问 List 、 Map 等集合元素
+        // 9. 在表达式中 使用变量， SpEL是通过 EvaluationContext 来配置变量，通过 #变量名称 来访问变量
+        List<String> list = new ArrayList<String >();
+        list.add("head first java");
+        list.add("spring framework");
+        Map<String,Double> map = new HashMap<String, Double>();
+        map.put("java", 80.0);
+        map.put("spring", 90.3);
+        EvaluationContext context = new StandardEvaluationContext();
+        context.setVariable("list", list);
+        context.setVariable("map", map);
+        System.out.println(parser.parseExpression("#list[0]").getValue(context));
+        System.out.println(parser.parseExpression("#map['java']").getValue(context));
+
+        // 5. 在表达式中 调用方法
+        System.out.println(parser.parseExpression("'HelloWorld'.substring(2,5)").getValue());
+        System.out.println(parser.parseExpression("#list.add('Servlet')").getValue(context));
+        System.out.println(list);
+
+        // 6. 在表达式中 使用算术、比较、逻辑、赋值等运算符
+        parser.parseExpression("#list[0]='Head First Java'").getValue(context);
+        System.out.println(list.get(0));
+
+        // 7. 在表达式中 使用类型运算符 T() , 告诉SpEL将T()运算符内的字符串当成"类"
+        System.out.println(parser.parseExpression("T(java.lang.System).getProperty('os.name')").getValue());
+
+        // 8. 在表达式中 使用new调用类的构造函数
+        System.out.println(parser.parseExpression("new String('HelloWorld').substring(2,6)").getValue());
+
+        // 11. 在表达式中 使用安全导航操作, 如果foo为空时，将返回 null
+        System.out.println(parser.parseExpression("#foo?.bar").getValue(context));
+
+        // 12. 对集合元素进行选择
+        // 集合选择语法：collection.?[condition_expr]
+        // 只有当 condition_expr 返回 true时，对应的集合元素才会被筛选出来
+        System.out.println(parser.parseExpression("#list.?[length()>7]").getValue(context));
+        System.out.println(parser.parseExpression("#map.?[value>90]").getValue(context));
+
+        // 13. 集合投影运算
+        // 集合投影运输的语法：collection.![condition_expr]
+        // 会依次将 collection 集合中的元素传人 condition_expr 中，并得到新的结果，最后组成新的集合
+        System.out.println(parser.parseExpression("#list.![length()]").getValue(context));
+
+        // 14. 表达式模板
+        expression = parser.parseExpression("我的姓名是: #{name}, 年龄是: #{age}", new TemplateParserContext());
+        Chinese chinese = new Chinese();
+        chinese.setName("张小平");
+        chinese.setAge(38);
+        System.out.println(expression.getValue(chinese));
     }
 }
