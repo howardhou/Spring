@@ -131,8 +131,11 @@ public class SpringTest {
 
         spelTest2();
 
-        // 使用属性占位符配置器（一个容器后处理器）：PropertyPlaceholderConfigurer，它会读取属性文件信息，
-        System.out.println("dataSource: " + context.getBean("dataSource", DataSource.class).getDriver());
+        // 使用属性占位符配置器（一个容器后处理器）：PropertyPlaceholderConfigurer，它会读取属性文件信息，并将这些信息设置成目标Bean的属性
+        System.out.println("dataSource: " + context.getBean("dataSource", DataSource.class).getUrl());
+
+        // 使用重写占位符配置器（一个容器后处理器）：PropertyOverrideConfigurer，它会读取属性文件信息，用于覆盖目标Bean的属性
+        System.out.println("dataSource2: " + context.getBean("dataSource2", DataSource.class).getUrl());
     }
 
     public static void spelTest(){
