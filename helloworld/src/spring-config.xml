@@ -222,4 +222,7 @@
     <!--在Spring 配置文件中 使用表达式语言配置Bean-->
     <bean id="korean3" class="com.example.service.Korean" p:axe="#{new com.example.service.SteelAxe()}"
           p:name="#{'HelloWorld'.concat('!')} - #{T(java.lang.Math).random()}" />
+
+    <!--配置Bean后处理器-->
+    <bean class="com.example.util.MyBeanPostProcessor" />
 </beans>
