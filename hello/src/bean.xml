@@ -5,5 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--自动扫描指定包及其子包下的所有Bean类-->
-    <context:component-scan base-package="com.example.service" />
+    <context:component-scan base-package="com.example.service" >
+        <!--满足该规则的类会被当成Bean类来处理，即使这些类没有使用Annotation-->
+        <context:include-filter type="regex" expression=".*Axe"/>
+        <!--<context:exclude-filter type="regex" expression=".*"-->
+    </context:component-scan>
 </beans>
