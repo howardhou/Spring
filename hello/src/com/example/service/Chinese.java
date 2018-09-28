@@ -1,5 +1,6 @@
 package com.example.service;
 
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -7,6 +8,8 @@ import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.*;
 
+// 在初始化Chinese之前， 强制初始化其他Bean
+@DependsOn({"axe","steelAxe"})
 // 使用 @Component 标注一个普通的 Spring Bean 类
 // 未指定 id 时， 会使用默认的 id, 即：chinese
 @Component
