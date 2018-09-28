@@ -30,8 +30,10 @@ public class English implements Person {
     // 这里采用的是 byType 自动装配策略
     @Autowired
     // 使用 @Qualifier("cat") 精确装配， 精确指定了被装配的Bean实例名称（id : cat）
-    @Qualifier("cat")
-    public void setBeing(Being being) {
+    // @Qualifier("cat")
+
+    // 使用 @Qualifier("cat") 标注方法的形参
+    public void setBeing(@Qualifier("cat") Being being) {
         this.being = being;
     }
 
