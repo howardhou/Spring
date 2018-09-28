@@ -12,6 +12,7 @@ public class French implements Person {
     @Autowired
     private Dog dog;
 
+    // 使用 @Autowired 标注 数组类型的 Field
     @Autowired
     private Axe[] axes;
     // 使用 @Autowired 标注多个参数的 普通方法
