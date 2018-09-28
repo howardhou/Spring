@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class French implements Person {
+    // 使用 @Autowired 标注 Field , Spring 采用 byType 或 byName 自动装配策略
+    @Autowired
     private Axe axe;
+    @Autowired
     private Dog dog;
 
     // 使用 @Autowired 标注多个参数的 普通方法
@@ -17,11 +20,11 @@ public class French implements Person {
 //    }
 
     // 使用 @Autowired 标注多参数的 构造函数
-    @Autowired
-    public French(Axe axe, Dog dog){
-        this.axe = axe;
-        this.dog = dog;
-    }
+//    @Autowired
+//    public French(Axe axe, Dog dog){
+//        this.axe = axe;
+//        this.dog = dog;
+//    }
 
     @Override
     public void useAxe() {

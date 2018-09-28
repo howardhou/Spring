@@ -26,7 +26,7 @@ public class English implements Person {
         return axe;
     }
 
-    // 这里采用的是 byName 自动装配策略
+    // 这里采用的是 byType 自动装配策略
     @Autowired
     public void setBeing(Being being) {
         this.being = being;
