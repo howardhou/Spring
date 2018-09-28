@@ -12,6 +12,8 @@ public class French implements Person {
     @Autowired
     private Dog dog;
 
+    @Autowired
+    private Axe[] axes;
     // 使用 @Autowired 标注多个参数的 普通方法
 //    @Autowired
 //    public void prepare(Axe axe, Dog dog){
@@ -30,5 +32,6 @@ public class French implements Person {
     public void useAxe() {
         System.out.println("French: "+axe.chop());
         System.out.println("French: " + dog);
+        System.out.println("French: axes length - " + axes.length);
     }
 }
