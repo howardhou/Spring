@@ -25,6 +25,7 @@ public class SpringTest {
         context.getBean("english", English.class).feedBeing();
 
         // 使用 @Autowired 标注多个参数的 普通方法
+        // 使用 @Autowired 标注多参数的 构造函数
         context.getBean("french", French.class).useAxe();
     }
 }
