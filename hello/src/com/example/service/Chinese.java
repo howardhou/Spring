@@ -2,6 +2,8 @@ package com.example.service;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -27,4 +29,16 @@ public class Chinese implements Person {
         System.out.println(axe.chop());
     }
 
+    // Spring容器将会在Bean依赖注入完成后（构造完成后）回调该方法
+    @PostConstruct
+    public void init(){
+        System.out.println("Chinese： 正在执行初始化之后的init方法");
+
+    }
+
+    // Spring 容器将会在销毁该Bean之前回调该方法
+    @PreDestroy
+    public void close(){
+        System.out.println("Chinese： 正在执行销毁之前的close方法");
+    }
 }
