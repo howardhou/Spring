@@ -38,10 +38,10 @@ public class English implements Person {
 
     @Override
     public void useAxe() {
-        System.out.println(axe.chop());
+        System.out.println("English: "+axe.chop());
     }
 
     public void feedBeing(){
-        System.out.println("喂食物给： " + being);
+        System.out.println("English: 喂食物给： " + being);
     }
 }

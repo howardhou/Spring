@@ -29,7 +29,7 @@ public class Chinese implements Person {
 
     @Override
     public void useAxe() {
-        System.out.println(axe.chop());
+        System.out.println("Chinese: " + axe.chop());
     }
 
     // Spring容器将会在Bean依赖注入完成后（构造完成后）回调该方法

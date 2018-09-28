@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.service.Chinese;
 import com.example.service.English;
+import com.example.service.French;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,5 +23,8 @@ public class SpringTest {
         context.getBean("english", English.class).useAxe();
 
         context.getBean("english", English.class).feedBeing();
+
+        // 使用 @Autowired 标注多个参数的 普通方法
+        context.getBean("french", French.class).useAxe();
     }
 }
