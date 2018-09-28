@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.service.Chinese;
+import com.example.service.English;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,5 +17,10 @@ public class SpringTest {
 
         // 使用 @Resource 配置依赖，将 steelAxe 注入到 setter 方法
         context.getBean("chinese", Chinese.class).useAxe();
+
+        // 使用 @Autowired 进行自动装配
+        context.getBean("english", English.class).useAxe();
+
+        context.getBean("english", English.class).feedBeing();
     }
 }
