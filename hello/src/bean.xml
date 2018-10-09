@@ -10,4 +10,8 @@
         <context:include-filter type="regex" expression=".*Axe"/>
         <!--<context:exclude-filter type="regex" expression=".*"-->
     </context:component-scan>
+
+    <bean id="test" class="com.example.service.TestBean">
+        <property name="resource" value="classpath:module.png"/>
+    </bean>
 </beans>

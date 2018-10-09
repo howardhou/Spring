@@ -70,6 +70,9 @@ public class SpringTest {
         TestBean testBean = context.getBean("test", TestBean.class);
         System.out.println("resourceloader 是否和 Application context 相等： "+ (testBean.getResourceLoader() == context));
 
+        // 当 Bean 实例需要访问Resource时，可以直接使用依赖注入
+        System.out.println("------------------------------------------------------------------");
+        testBean.parse();
     }
 
     // 使用 UrlResource 访问网络资源文件
