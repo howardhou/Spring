@@ -3,12 +3,10 @@ package com.example;
 import com.example.service.Chinese;
 import com.example.service.English;
 import com.example.service.French;
+import com.example.service.TestBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.core.io.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -57,6 +55,21 @@ public class SpringTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("------------------------------------------------------------------");
+
+        //通过 ApplicationContext 访问资源
+//        Resource resource = context.getResource("module.png");
+        //强制指定使用 URLResource访问资源
+        Resource resource = context.getResource("file:/Users/dongdong/OneDrive/idea.png");
+        // 获取资源的简单信息
+        System.out.println("文件名称："+resource.getFilename());
+        System.out.println("文件描述："+resource.getDescription());
+        System.out.println("文件是否存在："+resource.exists());
+
+        TestBean testBean = context.getBean("test", TestBean.class);
+        System.out.println("resourceloader 是否和 Application context 相等： "+ (testBean.getResourceLoader() == context));
+
     }
 
     // 使用 UrlResource 访问网络资源文件
