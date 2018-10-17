@@ -78,7 +78,7 @@ public class SpringTest {
 
         System.out.println("------------------------------------------------------------------");
 
-        context.getBean("chinese", Chinese.class).sayHello("张三");
+        System.out.println("Chinese : "+ context.getBean("chinese", Chinese.class).sayHello("张三"));
         context.getBean("chinese", Chinese.class).divide();
     }
 
