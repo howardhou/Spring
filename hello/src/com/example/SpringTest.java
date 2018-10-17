@@ -70,12 +70,13 @@ public class SpringTest {
         System.out.println("文件描述："+resource.getDescription());
         System.out.println("文件是否存在："+resource.exists());
 
+        System.out.println("------------------------------------------------------------------");
         TestBean testBean = context.getBean("test", TestBean.class);
         System.out.println("resourceloader 是否和 Application context 相等： "+ (testBean.getResourceLoader() == context));
-
         // 当 Bean 实例需要访问Resource时，可以直接使用依赖注入
-        System.out.println("------------------------------------------------------------------");
         testBean.parse();
+
+        System.out.println("------------------------------------------------------------------");
     }
 
     // 使用 UrlResource 访问网络资源文件
