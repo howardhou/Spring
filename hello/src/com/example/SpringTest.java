@@ -79,7 +79,7 @@ public class SpringTest {
         System.out.println("------------------------------------------------------------------");
 
         System.out.println("Chinese : "+ context.getBean("chinese", Chinese.class).sayHello("张三"));
-        context.getBean("chinese", Chinese.class).divide();
+//        context.getBean("chinese", Chinese.class).divide();
     }
 
     // 使用 UrlResource 访问网络资源文件
