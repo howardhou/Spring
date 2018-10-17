@@ -8,6 +8,6 @@ public class StoneAxe implements Axe {
 
     @Override
     public String chop() {
-        return "石头做的斧子砍柴很慢";
+        return "石斧砍柴很慢";
     }
 }
