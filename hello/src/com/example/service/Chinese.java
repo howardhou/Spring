@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+import java.io.FileInputStream;
 import java.util.*;
 
 // 在初始化Chinese之前， 强制初始化其他Bean
@@ -30,6 +31,23 @@ public class Chinese implements Person {
     @Override
     public void useAxe() {
         System.out.println("Chinese: " + axe.chop());
+    }
+
+    public String sayHello(String name){
+        try {
+            FileInputStream fileInputStream = new FileInputStream("a.txt");
+        }
+        catch (Exception ex){
+            System.out.println("Chinese Exception: "+ ex.getMessage());
+        }
+        return name + "Hello , Spring AOP";
+    }
+
+    public float divide(){
+        float re = 5 / 0 ;
+        System.out.println("Chinese: 5/0");
+
+        return re;
     }
 
     // Spring容器将会在Bean依赖注入完成后（构造完成后）回调该方法

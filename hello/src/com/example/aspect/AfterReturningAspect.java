@@ -12,6 +12,6 @@ public class AfterReturningAspect {
     // 只能在目标执行之后织入增强，无法改变目标方法的返回值
     @AfterReturning(returning = "rvt", pointcut = "execution(* com.example.service.*.*(..))")
     public void log(Object rvt){
-        System.out.println("...获取目标方法的返回值: " + rvt);
+//        System.out.println("...获取目标方法的返回值: " + rvt);
     }
 }
