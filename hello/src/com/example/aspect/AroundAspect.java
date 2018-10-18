@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 public class AroundAspect {
 
     // Around 增强处理可以取得目标方法的最大控制权，可以控制目标方法的执行，改变目标方法的参数，改变目标方法的返回值
-    @Around("execution(* com.example.service.Chinese.*(..))")
+    //@Around("execution(* com.example.service.Chinese.*(..))")
     public Object aroundProcess(ProceedingJoinPoint jp) throws Throwable {
 
         System.out.println("...执行目标方法之前， 开始事务...");
