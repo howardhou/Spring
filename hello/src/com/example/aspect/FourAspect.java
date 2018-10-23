@@ -1,16 +1,15 @@
 package com.example.aspect;
 
-import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 import java.util.Arrays;
 
-//@Aspect
+@Aspect
 public class FourAspect {
 
-    @Around("execution(* com.example.service.*.*(..))")
+    @Around("CustomPointcuts.servicePointcut()")
     public Object aroundProcess(ProceedingJoinPoint jp) throws Throwable {
 
         System.out.println("Around 增强：修改目标方法的参数和返回值 - 开始");
@@ -35,7 +34,7 @@ public class FourAspect {
         }
     }
 
-    @Before("execution(* com.example.service.*.*(..))")
+    @Before("CustomPointcuts.servicePointcut()")
     public void authority(JoinPoint jp){
         // 访问目标方法的参数:  返回被增强的目标方法的相关信息
         System.out.println("Before 增强： 被织入增强处理的目标方法为： " + jp.getSignature().getName());
@@ -45,15 +44,15 @@ public class FourAspect {
         System.out.println("Before 增强： 目标对象为： " + jp.getTarget());
     }
 
-    @AfterReturning(returning = "rvt", pointcut = "execution(* com.example.service.*.*(..))")
+    @AfterReturning(returning = "rvt", pointcut = "CustomPointcuts.servicePointcut()")
     public void log(JoinPoint jp, Object rvt){
         System.out.println("AfterReturning 增强： 被织入增强处理的目标方法为： " + jp.getSignature().getName());
         System.out.println("AfterReturning 增强： 目标方法的参数为： " + Arrays.toString(jp.getArgs()));
         System.out.println("AfterReturning 增强： 目标对象为： " + jp.getTarget());
     }
 
-    @After("execution(* com.example.service.*.*(..))")
-    public void release(JoinPoint jp){
+    @After("CustomPointcuts.servicePointcut()")
+    void release(JoinPoint jp){
         System.out.println("After 增强： 被织入增强处理的目标方法为： " + jp.getSignature().getName());
         System.out.println("After 增强： 目标方法的参数为： " + Arrays.toString(jp.getArgs()));
         System.out.println("After 增强： 目标对象为： " + jp.getTarget());
