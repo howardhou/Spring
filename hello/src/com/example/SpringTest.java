@@ -12,6 +12,7 @@ import org.springframework.core.io.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.Date;
 
 public class SpringTest {
     public static void main(String[] args){
@@ -80,6 +81,9 @@ public class SpringTest {
 
         System.out.println("Chinese : "+ context.getBean("chinese", Chinese.class).sayHello("张三"));
 //        context.getBean("chinese", Chinese.class).divide();
+
+        //
+        context.getBean("chinese", Chinese.class).eat("西瓜", new Date());
     }
 
     // 使用 UrlResource 访问网络资源文件

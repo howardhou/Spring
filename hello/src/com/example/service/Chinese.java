@@ -50,6 +50,10 @@ public class Chinese implements Person {
         return re;
     }
 
+    public void eat(String food, Date time){
+        System.out.println("我正在吃： " + food + ", 现在时间是： "+ time);
+    }
+
     // Spring容器将会在Bean依赖注入完成后（构造完成后）回调该方法
     @PostConstruct
     public void init(){

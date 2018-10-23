@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.*;
 
 import java.util.Arrays;
 
-@Aspect
+//@Aspect
 public class FourAspect {
 
     @Around("execution(* com.example.service.*.*(..))")
