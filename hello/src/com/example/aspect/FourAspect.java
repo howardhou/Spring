@@ -13,7 +13,7 @@ public class FourAspect {
     @Around("execution(* com.example.service.*.*(..))")
     public Object aroundProcess(ProceedingJoinPoint jp) throws Throwable {
 
-        System.out.println("Around 增强：修改目标方法的参数和返回值");
+        System.out.println("Around 增强：修改目标方法的参数和返回值 - 开始");
 
         // 访问目标方法的参数:  返回执行目标方法时的参数
         Object[] args = jp.getArgs();
@@ -24,6 +24,8 @@ public class FourAspect {
         }
 
         Object rvt = jp.proceed(args);
+
+        System.out.println("Around 增强：修改目标方法的参数和返回值 - 结束");
 
         if (rvt != null && rvt.getClass() == String.class) {
             return rvt + " 新增的内容";
