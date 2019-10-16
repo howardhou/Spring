@@ -11,12 +11,12 @@
 
     </bean>
 
-    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+    <bean id="emfx" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <!--注入JPA 持久单元-->
         <property name="persistenceUnitName" value="person_su"/>
     </bean>
 
-    <bean id="emf2" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >
 
         <property name="dataSource" ref="dataSource" />
     </bean>
