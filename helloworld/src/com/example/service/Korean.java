@@ -43,7 +43,7 @@ public class Korean implements Person, InitializingBean {
     }
 
     // 所有属性设置完成后，会自动执行 afterPropertiesSet 方法
-//    初始化完成之前，下调用 afterPropertiesSet 方法，再调用init方法
+    // afterPropertiesSet方法，和 init方法 作用完全一样，都是用来指定初始化方法，因此不用同时使用
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("正在执行 InitializingBean 接口中的 afterPropertiesSet 方法");

@@ -10,6 +10,9 @@
 
 - aspectj : AOP 面向切面编程
 
+- HibernateDemo
+	- 下载 Hibernate jar 包： 
+
 ## Spring  实战
 
 
